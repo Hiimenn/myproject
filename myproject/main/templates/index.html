@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Shop</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+  <header>
+    <nav> 
+        <div class="logo">Медицинские травы</div>
+        <ul class="nav-links">
+            <li><a href="#herbs-database">Травы</a></li>
+            <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
+<!-- First section -->
+<section class="hero">
+    <h1>Добро пожаловать в мир медицинских трав</h1>
+    <p>Исследуйте целебные свойства трав и их применение</p>
+    <div class="search-bar">
+        <input type="text" placeholder="Поиск...">
+        <button>Поиск</button>
+    </div>
+</section>
+<section class="sc1"> 
+  <!-- Filter categories -->
+  <div class="filter-bar">
+    <select id="category" onchange="filterProducts()">
+      <option value="all">Категории</option>
+      <option value="aglaonema">Лекарственные растения</option>
+      <option value="ferns">Комнатные растения</option>
+      <option value="calathea">Декоративные растения</option>
+    </select>
+    
+
+    <select id="price" onchange="filterProducts()">
+      <option value="all">Цены</option>
+      <option value="low">0 > $50</option>
+      <option value="medium">$50 - $100</option>
+      <option value="high">$100- 1000$ </option>
+    </select>
+  </div>
+
+  <div class="product-grid" id="product-grid">
+        <!-- Product cards -->
+        <div class="product-card" data-category="aglaonema" data-price="35" onclick="openModal('Jen Shen', '$35', 'image.png.png', 'Тёрн (или терновник, или слива колючая) — небольшой колючий кустарник, вид рода Слива (Prunus) семейства Розовые (Rosaceae).Это растение высотой 3,5–4,5 м, реже — низкорослое дерево не выше 8 м. Ветви обильно покрыты колючками. Разрастаясь в стороны при помощи корневых отпрысков, тёрн образует густые колючие и труднопроходимые заросли.Плоды тёрна содержат около 8 % сахаров, почти 2,5 % кислот, около 1 % пектиновых и более 1,5 % дубильных веществ, витамин С, красное красящее вещество. Из-за терпкого вкуса плоды почти не едят свежими. Из них делают варенье, компот, спиртной напиток «терновка», уксус, квас, добавляют в супы для подкисления.')">
+          <img src="{% static 'image.png.png' %}" alt="AAA">
+          <div class="product-name">Green Nuts</div>
+          <div class="product-price">$35.00</div>
+        </div>
+        <div class="product-card" data-category="aglaonema" data-price="70" onclick="openModal('Aglaonema Stripes', '$70', 'image.png-1.png', 'Мята обладает множеством полезных свойств:Успокаивающее действие: Помогает при стрессе, тревожности и бессоннице.Противовоспалительное и антисептическое действие: Используется для лечения воспалений и инфекций.Улучшение пищеварения: Снимает спазмы и помогает при метеоризме.Отхаркивающее средство: Полезна при заболеваниях дыхательных путей.')">
+          <img src="{% static 'image.png-1.png' %}" alt="Aglaonema Stripes">
+          <div class="product-name">Aglaonema Stripes</div>
+          <div>
+            <span class="product-price">$70.00</span>
+          </div>
+        </div>
+        <div class="product-card" data-category="ferns" data-price="215" onclick="openModal('Blue Star Fern', '$215', 'image.png-2.png', 'Душица обыкновенная (Origanum vulgare) — это многолетнее травянистое растение, известное своими лечебными и кулинарными свойствами. Душица широко используется в кулинарии как пряность. Листья и цветы добавляют в мясные и овощные блюда, соусы и салаты. Она придает блюдам уникальный аромат и вкус. В итальянской кухне душицу используют для ароматизации пиццы и пасты')">
+          <img src="{% static 'image.png-2.png' %}" alt="Blue Star Fern">
+          <div class="product-name">Blue Star Fern</div>
+          <div class="product-price">$215.00</div>
+        </div>
+        <div class="product-card" data-category="calathea" data-price="50" onclick="openModal('Calathea Lancifolia', '$50', 'image.png-3.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-3.png' %}" alt="Calathea Lancifolia">
+          <div class="product-name">Calathea Lancifolia</div>
+          <div class="product-price">$50.00</div>
+        </div>
+        <div class="product-card" data-category="aglaonema" data-price="35" onclick="openModal('Aglaonema Crete', '$35', 'image.png-4.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-4.png' %}" alt="Aglaonema Crete">
+          <div class="product-name">Aglaonema Crete</div>
+          <div class="product-price">$35.00</div>
+        </div>
+        <div class="product-card" data-category="aglaonema" data-price="70" onclick="openModal('Aglaonema Stripes', '$70', 'image.png-5.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-5.png' %}" alt="Aglaonema Stripes">
+          <div class="product-name">Aglaonema Stripes</div>
+          <div>
+            <span class="product-price">$70.00</span>
+          </div>
+        </div>
+        <div class="product-card" data-category="ferns" data-price="215" onclick="openModal('Blue Star Fern', '$215', 'image.png-6.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-6.png' %}" alt="Blue Star Fern">
+          <div class="product-name">Blue Star Fern</div>
+          <div class="product-price">$215.00</div>
+        </div>
+        <div class="product-card" data-category="calathea" data-price="50" onclick="openModal('Calathea Lancifolia', '$50', 'image.png-7.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-7.png' %}" alt="Calathea Lancifolia">
+          <div class="product-name">Calathea Lancifolia</div>
+          <div class="product-price">$50.00</div>
+        </div>
+        <div class="product-card" data-category="aglaonema" data-price="35" onclick="openModal('Aglaonema Crete', '$35', 'image.png-8.png', 'image.png-8.png')">
+          <img src="{% static 'image.png-8.png' %}" alt="Aglaonema Crete">
+          <div class="product-name">Aglaonema Crete</div>
+          <div class="product-price">$35.00</div>
+        </div>
+        <div class="product-card" data-category="aglaonema" data-price="70" onclick="openModal('Aglaonema Stripes', '$70', 'image.png-9.png', 'Ромашка (лат. Matricaria chamomilla) — это одно из самых известных и широко используемых целебных растений, обладающее множеством полезных свойств. Вот подробная информация о ромашке, ее химическом составе, лечебных свойствах и способах применения. Ромашка — это травянистое растение с характерными белыми цветками и желтой сердцевиной. Она принадлежит к семейству астровых (Asteraceae) и может достигать высоты до 40 см. Цветет с мая по сентябрь.')">
+          <img src="{% static 'image.png-9.png' %}" alt="Aglaonema Stripes">
+          <div class="product-name">Aglaonema Stripes</div>
+          <div>
+            <span class="product-price">$70.00</span>
+          </div>
+        </div>
+        <div class="product-card" data-category="ferns" data-price="215" onclick="openModal('Blue Star Fern', '$215', 'image.png-10.png', 'image.png-10.png')">
+          <img src="{% static 'image.png-10.png' %}" alt="Blue Star Fern">
+          <div class="product-name">Blue Star Fern</div>
+          <div class="product-price">$215.00</div>
+        </div>
+        <div class="product-card" data-category="calathea" data-price="50" onclick="openModal('Calathea Lancifolia', '$50', 'image.png-11.png', 'image.png-11.png')">
+          <img src="{% static 'image.png-11.png' %}" alt="Calathea Lancifolia">
+          <div class="product-name">Calathea Lancifolia</div>
+          <div class="product-price">$50.00</div>
+        </div>
+    </div>
+  <!-- Modal window -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <img id="modal-image" src="" alt="">
+      <h2 id="modal-title"></h2>
+      <p id="modal-price"></p>
+      <p id="modal-description"></p>
+    </div>
+    <!-- Close modal and but buttons -->
+    <button class="close-btn" onclick="closeModal()">X</button>
+    <button class="buy-btn">Buy</button>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Контакты</h4>
+            <p>Email: info@herbs.com</p>
+            <p>Телефон: +123456789</p>
+        </div>
+        <div class="footer-section">
+            <h4>Социальные сети</h4>
+            <p><a href="#" class="links">Facebook</a></p>
+            <p><a href="#" class="links">Instagram</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Медицинские травы. Все права защищены.</p>
+    </div>
+</footer>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

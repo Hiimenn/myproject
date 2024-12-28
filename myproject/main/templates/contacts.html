@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты</title>
+  <link rel="stylesheet" href="{% static 'contacts.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+        <div class="logo">Медицинские травы</div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Травы</a></li>
+            <li><a href="{% url 'about' %}">О нас</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+  </header>
+  <section class="sc1">
+    <h1>Свяжитесь с нами</h1>
+    <p>Мы всегда готовы помочь вам с вашими вопросами, предложениями или любой другой информацией, которая может вам понадобиться. Пожалуйста, используйте контактные данные ниже, чтобы связаться с нами.</p>
+    
+    <h2>Наши контакты</h2>
+    <ul>
+      <li><strong>Телефон:</strong> +7 123 456 78 90</li>
+      <li><strong>Email:</strong> info@medherbs.ru</li>
+      <li><strong>Адрес:</strong> ул. Цветочная, дом 10, г. Москва, Россия</li>
+      <li><strong>Рабочее время:</strong> Пн-Пт: 9:00 - 18:00</li>
+    </ul>
+
+    <h2>Форма обратной связи</h2>
+    <p>Вы также можете оставить сообщение, заполнив форму ниже. Мы постараемся ответить как можно скорее.</p>
+    <form class="contact-form">
+      <label for="name">Имя:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="message">Сообщение:</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+      
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+  <script src="contacts.js"></script>
+</body>
+</html>
